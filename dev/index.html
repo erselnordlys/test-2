@@ -5,23 +5,26 @@
     <title>Test 2</title>
 
     <link rel="stylesheet" href="style.css">
+    <script src="scripts.js"></script>
 </head>
 <body>
 <div class="wrapper">
+    <button onclick="renderUsers()">RENDER</button>
+
     <div class="before-table">
         <div class="before-table__icon"> </div>
         <div class="before-table__headline">PEOPLE</div>
     </div>
 
-    <div class="table">
+    <div class="table" id="table">
             <div class="table-head">
-                <div class="table-head__user user">user</div>
+                <div class="table-head__user user"></div>
                 <div class="table-head__ideas ideas">Ideas</div>
                 <div class="table-head__following following">Following</div>
                 <div class="table-head__followers followers">Followers</div>
             </div>
 
-
+        <!--создавать table-data и давать ему айди в джс-->
             <div class="table-data">
                 <div class="table-data__user user">
                     <div class="user__photo"></div>
@@ -32,6 +35,12 @@
                             <div class="stats__num">102</div>
                         </div>
                     </div>
+                    <div class="follow-check">
+                        <!--<div class="plus"></div>-->
+                        <div class="check-mark"></div>
+                        <div class="follow-button"></div>
+                        <div class="unfollow-button"></div>
+                    </div>
 
                 </div>
                 <div class="table-data__ideas ideas">0</div>
@@ -39,13 +48,8 @@
                 <div class="table-data__followers followers">0</div>
             </div>
 
-        <div class="table-data">
-            <div class="table-data__user user">USER</div>
-            <div class="table-data__ideas ideas">0</div>
-            <div class="table-data__following following">50</div>
-            <div class="table-data__followers followers">0</div>
-        </div>
     </div>
+    <div class="show-more">SHOW MORE</div>
 </div>
 
 </body>
