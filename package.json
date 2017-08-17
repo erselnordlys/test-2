@@ -1,0 +1,25 @@
+{
+  "name": "ruvil-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erselnordlys/test-2.git"
+  },
+  "author": "Alla P.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erselnordlys/test-2/issues"
+  },
+  "homepage": "https://github.com/erselnordlys/test-2#readme",
+  "devDependencies": {
+    "csslint": "^1.0.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-csslint": "^1.0.0"
+  }
+}
