@@ -8,6 +8,7 @@ var ideas = [0, 20, 0, 53, 0];
 var following = [50, 19, 2, 1049, 50];
 var followers = [0, 26, 0, 45, 0];
 
+// list users when page loaded
 function  renderUsers() {
     var parent = document.getElementById('table');
     var index = 0;
@@ -16,8 +17,6 @@ function  renderUsers() {
         if (index == 5) {
             index = 0;
         }
-        console.log(index);
-
         var node = document.createElement('DIV');       // create new line
         node.id = 'table-data-' + i;                    // append ids
         node.classList.add('table-data');
@@ -50,10 +49,10 @@ function  renderUsers() {
         followCheckDiv.classList.add('follow-check');
         followCheckDiv.id = 'check' + i;
         followCheckDiv.onmouseover = function () {
-            showFollowButton(this.id)
+            showButton(this.id)
         };
         followCheckDiv.onmouseout = function () {
-            hideFollowButton(this.id)
+            hideButton(this.id)
         };
 
         var plusDiv = document.createElement('DIV');        // create plus element
@@ -115,32 +114,50 @@ function  renderUsers() {
 
 }
 
-function showFollowButton(id) {
+// show button when hovered
+function showButton(id) {
     var parent = document.getElementById(id);
-    var button = parent.childNodes[2];
-    button.classList.add('visible');
+    var plus = parent.childNodes[0];
+    var button;
+
+    if (plus.classList.contains('visible')) {
+         button = parent.childNodes[2];
+    } else {
+         button = parent.childNodes[3];
+    }
+    if (button.classList.contains('visible')) {
+        console.log(button);
+    } else {
+        button.classList.add('visible');
+    }
 }
 
-function hideFollowButton(id) {
+// hide button when not hovered
+function hideButton(id) {
     var parent = document.getElementById(id);
-    var button = parent.childNodes[2];
+    var plus = parent.childNodes[0];
+    var button;
+
+    if (plus.classList.contains('visible')) {
+        button = parent.childNodes[2];
+    } else {
+        button = parent.childNodes[3];
+    }
     button.classList.remove('visible');
 }
 
-function showUnfollowButton(id) {
-    
-}
-
-function hideUnfollowButton(id) {
-
-}
-
+// toggle visibility of elements by click
 function toggleCheckMark(id) {
     var parent = document.getElementById(id).parentNode;
     var checkMark = parent.childNodes[1];
     var plus = parent.childNodes[0];
+    var follow = parent.childNodes[2];
+    var unfollow = parent.childNodes[3];
+
     plus.classList.toggle('visible');
     checkMark.classList.toggle('visible');
+    follow.classList.toggle('visible');
+    unfollow.classList.toggle('visible');
 }
 
 
