@@ -125,9 +125,7 @@ function showButton(id) {
     } else {
          button = parent.childNodes[3];
     }
-    if (button.classList.contains('visible')) {
-        console.log(button);
-    } else {
+    if (button.classList.contains('visible') == false) {
         button.classList.add('visible');
     }
 }
