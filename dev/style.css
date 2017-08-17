@@ -176,22 +176,53 @@ body {
 }
 
 .follow-check {
-    /*background-color: pink;*/
-    height: 44px;
+    align-self: flex-start;
+    height: 15px;
     margin-left: 10px;
+    margin-top: 8px;
+    position: relative;
     width: 60px
 }
 
 .follow-check div {
+    cursor: pointer;
     height: 15px;
 }
 
 .plus {
-    background: url('icons/plus.png') center /15px 14px;
-    width: 15px;
+    background: url('icons/plus.png') center /16px 15px;
+    cursor: pointer;
+    display: none;
+    width: 16px;
 }
 
 .check-mark {
-    background: url('icons/ok.png');
+    background: url('icons/ok.png') center /16px 15px;
+    cursor: pointer;
+    display: none;
     width: 13px;
+}
+
+.follow-button,
+.unfollow-button{
+    align-items: center;
+    background-color: #a4c574;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    display: none;
+    font-size: 12px;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 60px;
+}
+
+.unfollow-button {
+    background-color: #953a3a;
+}
+
+.visible {
+    display: flex;
 }
