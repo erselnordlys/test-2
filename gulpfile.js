@@ -40,7 +40,7 @@ gulp.task('build-js', function() {
 
 gulp.task('build-html', function () {
     del.sync('build/index.html');
-    gulp.src('index.html')
+    gulp.src('dev/index.html')
         .pipe(gulp.dest('build'));
 });
 
