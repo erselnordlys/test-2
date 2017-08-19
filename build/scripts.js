@@ -8,6 +8,51 @@ var ideas = [0, 20, 0, 53, 0];
 var following = [50, 19, 2, 1049, 50];
 var followers = [0, 26, 0, 45, 0];
 
+// create buttons and icons
+function createButtons(id) {
+    for (var i = 1; i < 12; i++) {
+
+        var followCheckDiv = document.createElement('div'); // create check block
+        followCheckDiv.classList.add('follow-check');
+        followCheckDiv.id = 'check' + id;
+        followCheckDiv.onmouseover = function () {
+            showButton(this.id)
+        };
+        followCheckDiv.onmouseout = function () {
+            hideButton(this.id)
+        };
+
+        var plusDiv = document.createElement('div');        // create plus element
+        plusDiv.classList.add('plus', 'visible');
+
+        var checkMarkDiv = document.createElement('div'); // create check-mark
+        checkMarkDiv.classList.add('check-mark');
+
+        var followBtnDiv = document.createElement('div'); // create follow button
+        followBtnDiv.classList.add('follow-button');
+        followBtnDiv.id = 'follow-' + id;
+        followBtnDiv.innerHTML = 'Follow';
+        followBtnDiv.onclick = function () {
+            toggleCheckMark(this.id);
+        };
+
+        var unfollowBtnDiv = document.createElement('div'); // create unfollow button
+        unfollowBtnDiv.classList.add('unfollow-button');
+        unfollowBtnDiv.id = 'unfollow-' + id;
+        unfollowBtnDiv.innerHTML = 'Unfollow';
+        unfollowBtnDiv.onclick = function () {
+            toggleCheckMark(this.id);
+        };
+
+        followCheckDiv.appendChild(plusDiv);            // append plus sign
+        followCheckDiv.appendChild(checkMarkDiv);       // append check-mark
+        followCheckDiv.appendChild(followBtnDiv);       // append follow-btn
+        followCheckDiv.appendChild(unfollowBtnDiv);     // append unfollow-btn
+
+        return followCheckDiv;
+    }
+}
+
 // list users when page loaded
 function  renderUsers() {
     var parent = document.getElementById('table');
@@ -17,82 +62,47 @@ function  renderUsers() {
         if (index == 5) {
             index = 0;
         }
-        var node = document.createElement('DIV');       // create new line
+        var node = document.createElement('div');       // create new line
         node.id = 'table-data-' + i;                    // append ids
         node.classList.add('table-data');
 
-        var userDiv =  document.createElement('DIV');   // create new block with user's info
+        var userDiv =  document.createElement('div');   // create new block with user's info
         userDiv.classList.add('table-data__user', 'user');
 
-        var photoDiv = document.createElement('DIV');   // create new user's photo block
+        var photoDiv = document.createElement('div');   // create new user's photo block
         photoDiv.classList.add('user__photo');
         photoDiv.style.background = 'url(\'images/'  + imagesNumbers[index] + '.png\') center / cover';
 
-        var columnWrapperDiv = document.createElement('DIV'); // create name and stats bock
+        var columnWrapperDiv = document.createElement('div'); // create name and stats bock
         columnWrapperDiv.classList.add('col-wrapper');
 
-        var nameDiv = document.createElement('DIV');    // create name element
+        var nameDiv = document.createElement('div');    // create name element
         nameDiv.classList.add('user__name');
         nameDiv.innerHTML = names[index];
 
-        var userStatsDiv = document.createElement('DIV'); // create stats block
+        var userStatsDiv = document.createElement('div'); // create stats block
         userStatsDiv.classList.add('user__stats');
 
-        var statsIconDiv = document.createElement('DIV'); // create stats icon block
+        var statsIconDiv = document.createElement('div'); // create stats icon block
         statsIconDiv.classList.add('stats__icon');
 
-        var statsNumDiv = document.createElement('DIV'); // create stats number block
+        var statsNumDiv = document.createElement('div'); // create stats number block
         statsNumDiv.classList.add('stats__num');
         statsNumDiv.innerHTML = rates[index];
 
-        var followCheckDiv = document.createElement('DIV'); // create check block
-        followCheckDiv.classList.add('follow-check');
-        followCheckDiv.id = 'check' + i;
-        followCheckDiv.onmouseover = function () {
-            showButton(this.id)
-        };
-        followCheckDiv.onmouseout = function () {
-            hideButton(this.id)
-        };
+       var  followCheckDiv = createButtons(i);          // create buttons and icons
 
-        var plusDiv = document.createElement('DIV');        // create plus element
-        plusDiv.classList.add('plus', 'visible');
-
-        var checkMarkDiv = document.createElement('DIV'); // create check-mark
-        checkMarkDiv.classList.add('check-mark');
-
-        var followBtnDiv = document.createElement('DIV'); // create follow button
-        followBtnDiv.classList.add('follow-button');
-        followBtnDiv.id = 'follow-' + i;
-        followBtnDiv.innerHTML = 'Follow';
-        followBtnDiv.onclick = function () {
-            toggleCheckMark(this.id);
-        };
-
-        var unfollowBtnDiv = document.createElement('DIV'); // create unfollow button
-        unfollowBtnDiv.classList.add('unfollow-button');
-        unfollowBtnDiv.id = 'unfollow-' + i;
-        unfollowBtnDiv.innerHTML = 'Unfollow';
-        unfollowBtnDiv.onclick = function () {
-            toggleCheckMark(this.id);
-        };
-
-        var ideasDiv = document.createElement('DIV');   // create ideas div
+        var ideasDiv = document.createElement('div');   // create ideas div
         ideasDiv.classList.add('table-data__ideas', 'ideas');
         ideasDiv.innerHTML = ideas[index];
 
-        var followingDiv = document.createElement('DIV'); // create followings div
+        var followingDiv = document.createElement('div'); // create followings div
         followingDiv.classList.add('table-data__following', 'ideas');
         followingDiv.innerHTML = following[index];
 
-        var followersDiv = document.createElement('DIV'); // create followers div
+        var followersDiv = document.createElement('div'); // create followers div
         followersDiv.classList.add('table-data__followers', 'followers');
         followersDiv.innerHTML = followers[index];
-
-        followCheckDiv.appendChild(plusDiv);            // append plus sign
-        followCheckDiv.appendChild(checkMarkDiv);       // append check-mark
-        followCheckDiv.appendChild(followBtnDiv);       // append follow-btn
-        followCheckDiv.appendChild(unfollowBtnDiv);     // append unfollow-btn
 
         userStatsDiv.appendChild(statsIconDiv);         // append icon to stats
         userStatsDiv.appendChild(statsNumDiv);          // append number to stats
@@ -144,7 +154,7 @@ function hideButton(id) {
     button.classList.remove('visible');
 }
 
-// toggle visibility of elements by click
+// toggle visibility of buttons and icons by click
 function toggleCheckMark(id) {
     var parent = document.getElementById(id).parentNode;
     var checkMark = parent.childNodes[1];
@@ -152,12 +162,24 @@ function toggleCheckMark(id) {
     var follow = parent.childNodes[2];
     var unfollow = parent.childNodes[3];
 
+    // show-hide icons behind the buttons
     plus.classList.toggle('visible');
     checkMark.classList.toggle('visible');
-    follow.classList.toggle('visible');
-    unfollow.classList.toggle('visible');
-}
 
+    // toggle buttons
+    if (follow.classList.contains('visible')) {
+        unfollow.classList.toggle('visible');
+        setTimeout(function () {
+            follow.classList.toggle('visible');
+        },50)
+    } else if (unfollow.classList.contains('visible')) {
+        follow.classList.toggle('visible');
+        setTimeout(function () {
+            unfollow.classList.toggle('visible');
+        },50)
+    }
+
+}
 
 function main () {
     renderUsers();
